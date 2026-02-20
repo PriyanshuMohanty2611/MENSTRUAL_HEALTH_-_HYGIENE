@@ -1,0 +1,40 @@
+services:
+  # ── Frontend: React Static Site ─────────────────────────────
+  - type: web
+    name: prince-care-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && CI=false DISABLE_ESLINT_PLUGIN=true npm run build
+    staticPublishPath: ./build
+    pullRequestPreviewsEnabled: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: REACT_APP_GEMINI_API_KEY
+        sync: false
+
+  # ── Backend: Node.js Express API ────────────────────────────
+  - type: web
+    name: prince-care-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+
+databases:
+  - name: prince-care-db
+    databaseName: menstrual_cycle
+    user: admin
+    plan: free
