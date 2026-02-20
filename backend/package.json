@@ -1,0 +1,40 @@
+{
+  "name": "menstrucare-backend",
+  "version": "1.0.0",
+  "description": "IoT-based menstrual health ecosystem backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node database-setup.js",
+    "seed-clear": "node database-setup.js --clear"
+  },
+  "keywords": [
+    "iot",
+    "menstrual-health",
+    "mqtt",
+    "mongodb"
+  ],
+  "author": "MenstruCare Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "mqtt": "^5.0.5",
+    "pg": "^8.18.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
