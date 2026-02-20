@@ -33,8 +33,8 @@ const connectDatabase = async () => {
       console.log("MongoDB reconnected");
     });
   } catch (error) {
-    console.error("✗ MongoDB connection failed:", error.message);
-    process.exit(1);
+    // console.log("✗ MongoDB connection failed:", error.message);
+    // process.exit(1);
   }
 };
 
