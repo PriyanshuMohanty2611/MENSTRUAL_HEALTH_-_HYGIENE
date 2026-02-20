@@ -32,16 +32,19 @@ const Login = ({ onLogin }) => {
   const [role, setRole]         = useState('CUSTOMER');
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [stats, setStats]       = useState({ users: 1284, cycles: 8421, sensors: 9 });
+  const [stats, setStats]       = useState({ users: 1284, cycles: 8421, sensors: 9, activeNow: 5 });
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setStats(s => ({
-        users:   s.users   + Math.floor(Math.random() * 3),
-        cycles:  s.cycles  + Math.floor(Math.random() * 5),
-        sensors: 9,
-      }));
-    }, 4000);
+    const fetchStats = async () => {
+      try {
+        const { healthService } = require('../services/api');
+        const res = await healthService.getPublicStats();
+        setStats(res.data);
+      } catch (e) {}
+    };
+
+    fetchStats();
+    const id = setInterval(fetchStats, 10000);
     return () => clearInterval(id);
   }, []);
 
@@ -112,6 +115,13 @@ const Login = ({ onLogin }) => {
             <StatPill icon="🌸" value={stats.users.toLocaleString()} label="Registered users" delay="0s" />
             <StatPill icon="🌙" value={stats.cycles.toLocaleString()} label="Cycles tracked" delay="1.3s" />
             <StatPill icon="📡" value={`${stats.sensors} sensors`} label="IoT nodes live" delay="2.6s" />
+            <div className="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-xl border border-emerald-100 animate-pulse">
+               <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+               <div>
+                 <p className="text-sm font-black text-slate-900 leading-none">{stats.activeNow}</p>
+                 <p className="text-[9px] font-black uppercase tracking-widest text-emerald-600">Active Now</p>
+               </div>
+            </div>
           </div>
 
           {/* Feature strip */}

@@ -77,6 +77,7 @@ export const analyticsService = {
 // Health Check
 export const healthService = {
   check: () => api.get('/health'),
+  getPublicStats: () => api.get('/stats/public'),
 };
 
 export default api;
