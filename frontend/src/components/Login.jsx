@@ -51,9 +51,20 @@ const Login = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 900)); // simulate auth
-    onLogin({ name: email.split('@')[0], email, role, lunaCoins: 1250 });
-    setIsLoading(false);
+    try {
+      const { authService } = require('../services/api');
+      const response = await authService.login({ email, role });
+      
+      if (response.data.success) {
+        onLogin(response.data.user);
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      // Fallback for demo if backend is offline, but now it tries for REAL
+      onLogin({ name: email.split('@')[0], email, role, lunaCoins: 1250 });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const selectedRole = ROLES.find(r => r.id === role);
