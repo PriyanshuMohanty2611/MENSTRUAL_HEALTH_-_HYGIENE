@@ -239,6 +239,24 @@ const CustomerDashboard = ({ activeTab, setActiveTab, user, profileName: navProf
                 <div className="p-12 ethereal-glass rounded-[60px] bg-white/5 border border-white/10">
                    <h3 className="text-3xl font-black text-slate-900 tracking-tighter italic uppercase mb-8">Gynaecology Hub.</h3>
                     <div className="space-y-6">
+                       {/* Dr. Chandra Jyoti — Asst. Prof. Obstetrics & Gynaecology */}
+                       <div className="p-8 bg-white shadow-xl rounded-[32px] border border-slate-50 flex items-center justify-between group hover:-translate-y-2 transition-transform">
+                          <div className="flex gap-6 items-center">
+                             <img src="/dr-chandra-jyoti.png" className="w-16 h-16 rounded-2xl object-cover shadow-lg" alt="Dr. Chandra Jyoti" onError={e=>{e.target.style.display='none'}} />
+                             <div>
+                                <p className="text-xl font-black text-slate-800">Dr. Chandra Jyoti</p>
+                                <p className="text-[10px] font-black text-[#8a2be2] uppercase tracking-widest">Asst. Prof. • Obstetrics & Gynaecology</p>
+                                <p className="text-xs text-slate-400 font-medium mt-0.5">Faculty @ AIIMS Bhubaneswar</p>
+                             </div>
+                          </div>
+                          <button 
+                            onClick={() => window.open('https://aiimsbhubaneswar.nic.in/faculty/dr-chandra-jyoti/', '_blank')} 
+                            className="px-6 py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-[#8a2be2] transition-colors"
+                          >
+                            Book Now
+                          </button>
+                       </div>
+
                        {/* Dr. Jayshree */}
                        <div className="p-8 bg-white shadow-xl rounded-[32px] border border-slate-50 flex items-center justify-between group hover:-translate-y-2 transition-transform">
                           <div className="flex gap-6 items-center">
@@ -250,19 +268,6 @@ const CustomerDashboard = ({ activeTab, setActiveTab, user, profileName: navProf
                              </div>
                           </div>
                           <button onClick={() => setShowBookingModal(true)} className="px-6 py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-[#ff2d95] transition-colors">Book Now</button>
-                       </div>
-
-                       {/* Dr. Surya Prakash — now Gynaecologist with Book Now */}
-                       <div className="p-8 bg-white shadow-xl rounded-[32px] border border-slate-50 flex items-center justify-between group hover:-translate-y-2 transition-transform">
-                          <div className="flex gap-6 items-center">
-                             <img src="/doctor2.png" className="w-16 h-16 rounded-2xl object-cover shadow-lg" alt="Dr. Surya Prakash" onError={e=>{e.target.style.display='none'}} />
-                             <div>
-                                <p className="text-xl font-black text-slate-800">Dr. Surya Prakash</p>
-                                <p className="text-[10px] font-black text-[#8a2be2] uppercase tracking-widest">Gynaecologist • FRCOG</p>
-                                <p className="text-xs text-slate-400 font-medium mt-0.5">18 yrs exp · Tue–Sat · Rural Health Pioneer</p>
-                             </div>
-                          </div>
-                          <button onClick={() => setShowBookingModal(true)} className="px-6 py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-[#8a2be2] transition-colors">Book Now</button>
                        </div>
                     </div>
                 </div>
